@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const DealsListScreen = () => {
+const SavedDealsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>DealsListScreen</Text>
+      <Text>SavedDealsScreen</Text>
     </View>
   );
 };
 
-export default DealsListScreen;
+export default SavedDealsScreen;
 
 const styles = StyleSheet.create({
   container: {

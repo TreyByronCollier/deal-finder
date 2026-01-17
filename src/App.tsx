@@ -1,40 +1,30 @@
-import { Text, StyleSheet, View } from "react-native";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import React from "react";
+import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import { RootNavigator } from "./navigation/RootNavigator";
+import { ThemeProvider } from "./theme/ThemeContext";
+import { useTheme } from "./theme/useTheme";
 
-function Root() {
-  const insets = useSafeAreaInsets();
+function AppNavigation() {
+  const { theme } = useTheme();
+  const navTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      ...theme.colors,
+    },
+  };
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-        },
-      ]}
-    >
-      <Text style={styles.text}>Deals Finder</Text>
-    </View>
+    <NavigationContainer theme={navTheme}>
+      <RootNavigator />
+    </NavigationContainer>
   );
 }
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <Root />
-    </SafeAreaProvider>
+    <ThemeProvider>
+      <AppNavigation />
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "600",
-  },
-});
