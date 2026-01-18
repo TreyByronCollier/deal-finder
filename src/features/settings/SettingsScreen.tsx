@@ -4,14 +4,20 @@ import { useTheme } from "../../theme/useTheme";
 
 export default function SettingsScreen() {
   const { mode, setMode, theme } = useTheme();
-
+  const foo = [1, 2, 3];
   return (
-    <View style={{ padding: 16, backgroundColor: theme.colors.background, flex: 1 }}>
-      <Text style={{ color: theme.colors.text, marginBottom: 16 }}>Theme: {mode}</Text>
+    <View
+      style={{ padding: 16, backgroundColor: theme.colors.background, flex: 1 }}
+    >
+      <Text style={{ color: theme.colors.text, marginBottom: 16 }}>
+        Theme: {mode}
+      </Text>
 
       {(["light", "dark", "system"] as const).map((m) => (
         <Pressable key={m} onPress={() => setMode(m)}>
-          <Text style={{ color: theme.colors.primary, paddingVertical: 8 }}>{m === mode ? `✓ ${m}` : m}</Text>
+          <Text style={{ color: theme.colors.primary, paddingVertical: 8 }}>
+            {m === mode ? `✓ ${m}` : m}
+          </Text>
         </Pressable>
       ))}
     </View>

@@ -1,8 +1,13 @@
 import React from "react";
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { RootNavigator } from "./navigation/RootNavigator";
 import { ThemeProvider } from "./theme/ThemeContext";
 import { useTheme } from "./theme/useTheme";
+import { SavedDealsProvider } from "./features/deals/hooks/SavedDealsContext";
 
 function AppNavigation() {
   const { theme } = useTheme();
@@ -24,7 +29,9 @@ function AppNavigation() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppNavigation />
+      <SavedDealsProvider>
+        <AppNavigation />
+      </SavedDealsProvider>
     </ThemeProvider>
   );
 }
